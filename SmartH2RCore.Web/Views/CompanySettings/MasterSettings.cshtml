@@ -1,0 +1,144 @@
+﻿@model SmartH2RCore.Web.Models.CompanySettingViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutSettings.cshtml";
+    ViewData["Title"] = "Company Setting";
+}
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Company Settings</h3>
+            </div>
+        </div>
+    </div><a href="c:\users\administrator\downloads\hrms_netcore1\smarth2r\src\smarth2rcore.web\views\companysettings\mastersettings.cshtml">c:\users\administrator\downloads\hrms_netcore1\smarth2r\src\smarth2rcore.web\views\companysettings\mastersettings.cshtml</a>
+    <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- Add Custom Policy Modal -->
+                                <div id="add_custom_policy" class="" role="dialog">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="max-width: 100%;">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Company Settings</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label">Company Name<span class="text-danger"></span></label>
+                                            @Html.DropDownListFor(v => v.CompanyId, new List<SelectListItem>(), "", new { @class = "select companyDropdown" })
+                                            @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label">Branch/ Work Location<span class="text-danger"></span></label>
+                                            @Html.DropDownListFor(v => v.BranchId, new List<SelectListItem>(), "", new { @class = "select companyDropdown" })
+                                            @Html.ValidationMessageFor(model => model.BranchId, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-4 col-form-label">Masters<span class="text-danger"></span></label>
+                                  @*           @Html.DropDownListFor(v => v.Masters, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "None", Value = "0" },
+                                            new SelectListItem { Text = "Department Type" ,Value="1"},
+                                            new SelectListItem { Text = "Sub Department", Value = "2" },
+                                            new SelectListItem { Text = "Designation", Value = "3" },
+                                            new SelectListItem { Text = "Employee Type", Value = "4" },
+                                            new SelectListItem { Text = "Employee Sub Type", Value = "5" },
+                                            new SelectListItem { Text = "Employee Status", Value = "6" },
+                                            new SelectListItem { Text = "Role", Value = "7" },
+                                            new SelectListItem { Text = "Grade", Value = "8" },
+                                            new SelectListItem { Text = "Currency Code", Value = "9" },
+                                            new SelectListItem { Text = "Bank", Value = "10" },
+                                            new SelectListItem { Text = "Country", Value = "11" },
+                                            new SelectListItem { Text = "State", Value = "12" },
+                                            new SelectListItem { Text = "City", Value = "13" },
+                                            new SelectListItem { Text = "Parent Query Type", Value = "14" },
+                                            new SelectListItem { Text = "Query Type", Value = "15" },
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.Masters, "", new { @class = "text-danger" })
+ *@
+                                                      
+                                                    </div>
+                                                    <!-- <div class="form-group">
+                                                        <label>Days <span class="text-danger"></span></label>
+                                                        <input type="text" class="form-control">
+                                                    </div> -->
+                                                    <div class="form-group leave-duallist">
+                                                        <label>Add employee</label>
+                                                        <div class="row">
+                                                            <div class="col-lg-5 col-sm-5">
+                                                                <select name="customleave_from" id="customleave_select" class="form-control" size="5" multiple="multiple">
+                                                                    <option value="1">	Facilities </option>
+                                                                    <option value="2">support</option>
+                                                                    <option value="3">Operations</option>
+                                                                    <option value="4">Facilities</option>
+                                                                    <option value="5">support</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="multiselect-controls col-lg-2 col-sm-2">
+                                                                <button type="button" id="customleave_select_rightAll" class="btn btn-block btn-white"><i class="fa fa-forward"></i></button>
+                                                                <button type="button" id="customleave_select_rightSelected" class="btn btn-block btn-white"><i class="fa fa-chevron-right"></i></button>
+                                                                <button type="button" id="customleave_select_leftSelected" class="btn btn-block btn-white"><i class="fa fa-chevron-left"></i></button>
+                                                                <button type="button" id="customleave_select_leftAll" class="btn btn-block btn-white"><i class="fa fa-backward"></i></button>
+                                                            </div>
+                                                            <div class="col-lg-5 col-sm-5">
+                                                                <select name="customleave_to" id="customleave_select_to" class="form-control" size="8" multiple="multiple"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="submit-section">
+                                                        <button class="btn btn-primary submit-btn">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                     </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $("#CompanyId").change(function () {
+                var Id = $('option:selected', this).val();
+                $.getJSON("/Branch/GetBranch", { 'companyId': Id }, function (response) {
+                    $("#BranchId").empty();
+                    $("#BranchId").append($("<option />").val(null).text("Select Branch Name"));
+                    $.each(response, function () {
+                        $("#BranchId").append($("<option />").val(this.Id).text(this.LocationName));
+                    });
+                })
+            });
+
+            $("#MasterType").change(function () {
+                var Id = $('option:selected', this).val();
+                if (Id > 0) {
+                    $("#lblMasterTableName").text($('option:selected', this).text())
+                }
+                else {
+                    $("#lblMasterTableName").text("")
+                }
+                $.getJSON("@Url.Action("GetMasterData")?masterType=" + $("#MasterType").val() + "&branchId=" + $("#BranchId").val(),
+                    function (response) {
+                        $("#customleave_select").empty();
+                        $.each(response.Source, function () {
+                            console.log(this);
+                            $("#customleave_select").append($("<option />").val(this.Value).text(this.Text));
+                        });
+
+                        $("#customleave_select_to").empty();
+                        $.each(response.Destination, function () {
+                            $("#customleave_select_to").append($("<option />").val(this.Value).text(this.Text));
+                        });
+                    }
+                )
+            });
+        });
+    </script>
+}

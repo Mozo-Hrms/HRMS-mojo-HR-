@@ -1,0 +1,214 @@
+﻿@model SmartH2RCore.Models.DTO.Settings.AssetSettingDTO
+@{
+    ViewData["Title"] = "Asset Setting";
+    Layout = "~/Views/Shared/_LayoutSettings.cshtml";
+}
+
+
+   
+
+        <!-- Page Content -->
+<div class="content container-fluid" data-select2-id="8">
+
+     
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h3 class="page-title">Asset Setting</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="AssetSetting">AssetSetting</a></li>
+                            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Setting">Setting</a></li>
+                         
+                        </ul>
+                    </div>
+            
+                </div>
+            </div>
+            <!-- /Page Header -->
+     
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <!-- <div class="card-header">
+                            <h4 class="card-title mb-0">Company Settings</h4>
+                        </div> -->
+                        <div class="card-body">
+                           <form data-select2-id="5" method="post">
+                              @Html.HiddenFor(v => v.Id)
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <h4 class="card-title">Assign Asset</h4>
+                                        <hr>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Company Name<span class="text-danger"> *</span></label>
+                                           <div class="col-lg-8">
+                                               @Html.DropDownListFor(v => v.CompanyName, new List<SelectListItem>() {
+                                               new SelectListItem { Text = "Select "},
+                                               new SelectListItem { Text = "abc" },
+                                               new SelectListItem { Text = "Xyz"}
+                                                }, new { @class = "select" })
+                                               @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                           </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Work Location<span class="text-danger"> *</span></label>
+                                          <div class="col-lg-8">
+                                            @Html.DropDownListFor(v => v.WorkLocation, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.WorkLocation, "", new { @class = "text-danger" })
+                                          </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Asset Name <span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8">
+                                            @Html.DropDownListFor(v => v.AssetName, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.AssetName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Select Employee <span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8 ">
+                                            @Html.DropDownListFor(v => v.SelectEmployee, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.SelectEmployee, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Issued Date<span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8 cal-icon">
+                                                <input type="text" class="form-control datetimepicker ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Recieved By<span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8 ">
+                                            @Html.DropDownListFor(v => v.RecievedBy, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.RecievedBy, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Approved By<span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8 ">
+                                            @Html.DropDownListFor(v => v.ApprovedBy, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.ApprovedBy, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <h4 class="card-title">Return Asset</h4>
+                                        <hr>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Company Name<span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8">
+                                            @Html.DropDownListFor(v => v.CompanyName, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Work Location<span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8">
+                                            @Html.DropDownListFor(v => v.WorkLocation, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.WorkLocation, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Select Employee <span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8 ">
+                                            @Html.DropDownListFor(v => v.SelectEmployee, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.SelectEmployee, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Asset List <span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8">
+                                            @Html.DropDownListFor(v => v.AssetList, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.AssetList, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Recieved Date<span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8 cal-icon">
+                                                <input type="text" class="form-control datetimepicker ">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Hand Over By<span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8 ">
+                                            @Html.DropDownListFor(v => v.HandOverBy, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.HandOverBy, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Approved By<span class="text-danger"> *</span></label>
+                                            <div class="col-lg-8 ">
+                                            @Html.DropDownListFor(v => v.ApprovedBy, new List<SelectListItem>() {
+                                            new SelectListItem { Text = "Select "},
+                                            new SelectListItem { Text = "abc" },
+                                            new SelectListItem { Text = "Xyz"}
+                                            }, new { @class = "select" })
+                                            @Html.ValidationMessageFor(model => model.ApprovedBy, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                  
+                  
+                   
+                </div>
+            </div>
+            <!-- Select Employee Details -->
+              <div class="row">
+                 <div class="col-md-12">
+                   <div class="submit-section ">
+                    <button class="btn btn-primary submit-btn">Save</button>
+                  @* <button type="submit" class="btn btn-primary submit-btn"><i class="fa fa-save"></i>&nbsp;@(Model == null || Model.Id <= 0 ? "Add" : "update")</button> *@
+                    <button type="reset" class="btn btn-primary submit-btn"><i class="fa fa-recycle"></i>&nbsp;Reset</button> 
+                   </div>
+                 </div>
+              </div>
+      
+ 
+ </div>
+    

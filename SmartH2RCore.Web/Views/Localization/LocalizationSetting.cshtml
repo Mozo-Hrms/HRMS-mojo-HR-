@@ -1,0 +1,108 @@
+﻿@model SmartH2RCore.Models.DTO.Settings.LocalizatonSettingDTO
+@{
+    Layout = "~/Views/Shared/_LayoutSettings.cshtml";
+    ViewData["Title"] = "Localization Setting ";
+}
+
+<html>
+<body>
+    <div class="content container-fluid" data-select2-id="8">
+        <div class="row" data-select2-id="7">
+            <div class="col-md-8 offset-md-2" data-select2-id="6">
+                <form data-select2-id="5" method="post">
+                    @Html.HiddenFor(v => v.Id)
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h3 class="page-title">Basic Settings</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Page Header -->
+
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Default Country</label>
+                                @Html.DropDownListFor(v => v.DefaultCountry, new List<SelectListItem>() {
+                                new SelectListItem { Text = "None", Value = "0" },
+                                new SelectListItem { Text = "USA" },
+                                new SelectListItem { Text = "United Kingdom", Value = "2" }
+                                }, new { @class = "select" })
+                                @Html.ValidationMessageFor(model => model.DefaultCountry, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Date Format</label>
+                                @Html.DropDownListFor(v => v.DateFormat, new List<SelectListItem>() {
+                                new SelectListItem { Text = "None", Value = "0" },
+                                new SelectListItem { Text = "15/05/2016", Value = "1" },
+                                new SelectListItem { Text = "15.05.2016", Value = "2" },
+                                new SelectListItem { Text = "05/15/2016", Value = "3" },
+                                new SelectListItem { Text = "2016/05/15", Value = "4" },
+                                new SelectListItem { Text = "2016/05/15", Value = "5" },
+                                new SelectListItem { Text = "May 15 2016", Value = "6" }
+                                }, new { @class = "select" })
+                                @Html.ValidationMessageFor(model => model.DateFormat, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Timezone</label>
+                                @Html.DropDownListFor(v => v.Timezone, new List<SelectListItem>() {
+                                new SelectListItem { Text = "None", Value = "0" },
+                                new SelectListItem { Text = "(UTC +5:30) Antarctica/Palmer", Value = "1" },
+
+                                }, new { @class = "select" })
+                                @Html.ValidationMessageFor(model => model.Timezone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Default Language</label>
+                                @Html.DropDownListFor(v => v.DefaultLanguage, new List<SelectListItem>() {
+                                new SelectListItem { Text = "None", Value = "0" },
+                                new SelectListItem { Text = "English", Value = "1" },
+
+                                }, new { @class = "select" })
+                                @Html.ValidationMessageFor(model => model.DefaultLanguage, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Currency Code</label>
+                                @Html.DropDownListFor(v => v.CurrencyCode, new List<SelectListItem>() {
+                                new SelectListItem { Text = "None", Value = "0" },
+                                new SelectListItem { Text = "Pound", Value = "1" },
+                                new SelectListItem { Text = "EURO", Value = "2" },
+                                new SelectListItem { Text = "Ringgit", Value = "3" }
+                                }, new { @class = "select" })
+                                @Html.ValidationMessageFor(model => model.CurrencyCode, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Currency Symbol</label>
+                                <input class="form-control" readonly value="$" type="text">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="submit-section">
+                                <button class="btn btn-primary submit-btn">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
